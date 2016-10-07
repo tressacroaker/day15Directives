@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="dirApp">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body ng-controller="mainCtrl">
+
+    <button type="button" ng-click="sorter='+'">Ascending</button>
+    <button type="button" ng-click="sorter='-'">Descending</button>
+    <!-- you can sort by date, ascending, descending. if we are sprting through objects and the objects ahve many keys in them example objects of name and keys of age sex nationality, you can do +name and it wil select that key and sort by ascending order -->
+
+    <!-- <button type="button" ng-click="sorter='+name'">Name</button>
+    <button type="button" ng-click="sorter='+age'">Age</button>
+    <button type="button" ng-click="sorter='-profession'">Profession</button> -->
+    <!-- if you do this then you need to change the orderBy: back to just sorter -->
+  <br>
+  <input type="text" ng-model="filterer">
+
+
+    {{test}}
+    <!-- <ul>
+      <li ng-repeat="thing in attrs | orderBy: sorter"> -->
+        <!-- this will order alphabetically -->
+        <!-- the plus sign is alphabetical, the negative is backwards -->
+        <!-- that is our index in the attrs array -->
+        <!-- in each li we want to do a h3 tag that says whatever that thing is -->
+        <!-- {{thing}}
+      </li>
+    </ul> -->
+
+
+    <!-- below is the +sorter example: -->
+    <ul>
+      <div ng-repeat="thing in attrs | orderBy: sorter | filter: filterer">
+        <li> {{thing.name}}</li>
+        <li> {{thing.age}}</li>
+        <!-- change the value of neighbor below with the dblclick -->
+        <!-- the logic: at first the updatething is undefined right now so it is naturally false and so if we say hide, hide=false, that means show. so when we turn it to updatething = true the thing is -->
+        <li ng-hide="updatething" ng-dblclick="updatething = true"> {{thing.profession}}</li>
+        <form ng-show="updatething" ng-submit="updatething = false">
+        <input type="text" ng-model="thing.profession">
+        <!-- the model is where the thing is being changed -->
+        </form>
+        <br>
+      </div>
+    </ul>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script> -->
+    <script src="app.js"></script>
+    <script src="mainCtrl.js"></script>
+    <script src="mainServ.js"></script>
+  </body>
+</html>
